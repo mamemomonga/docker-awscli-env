@@ -32,5 +32,6 @@ ubuntuユーザでbash起動
 
 # 注意点
 
-* docker-compose は専用のネットワークが作成される。終了する場合は docker-compose down
+* docker-compose up は動きません。
+* docker-compose は専用のネットワークが作成されるので、終了する場合は docker-compose down
 
