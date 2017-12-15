@@ -24,3 +24,10 @@ RUN set -xe; \
  		useradd -g ${HGID} -u ${HUID} -s /bin/bash ubuntu; \
  	fi
 
+RUN set -xe && \
+	echo "ubuntu ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/wheel_user && \
+	chmod 600 /etc/sudoers.d/wheel_user
+
+ADD assets/ /
+ENTRYPOINT ["/entrypoint.sh"]
+

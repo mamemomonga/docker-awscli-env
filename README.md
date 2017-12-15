@@ -3,7 +3,8 @@
 * AWS CLIおよびいくつかのツールを導入したUbuntu Xenial Dockerコンテナを構築します。
 * 時計はJST, APTミラーは理化学研究所になっています。
 * docker build 時に現在のUID, GIDと同じubuntuユーザを作成します。
-* ubunutuフォルダを /home/ubuntu としてマウントします。
+* ubuntuフォルダを /home/ubuntu としてマウントします。
+* 何もしないサーバとして sleep infinity を起動します。
 
 # 必要なもの
 
@@ -17,21 +18,25 @@
 	echo "HGID=$(id -g)" >  .env
 	echo "HUID=$(id -u)" >> .env
 
-ビルド
+ビルドと起動
 
-	docker-compose build
+	docker-compose up --build -d
 
-rootユーザでbash起動
+ubuntuユーザでログイン
 
-	docker-compose run --rm root
+	docker-compose exec work login -f ubuntu
 
+rootユーザでログイン
 
-ubuntuユーザでbash起動
+	docker-compose exec work login -f root
 
-	docker-compose run --rm ubuntu
+sudoを使えばパスワードなしでubuntuユーザからrootになれます
 
-# 注意点
+tmux起動
 
-* docker-compose up は動きません。
-* docker-compose は専用のネットワークが作成されるので、終了する場合は docker-compose down
+	docker-compose exec -u ubuntu work tmux
+
+終了
+
+	docker-compose down
 
