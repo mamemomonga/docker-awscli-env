@@ -8,10 +8,10 @@ RUN set -xe && \
 
 RUN set -xe && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
 		gosu sudo git vim openssh-server git awscli tmux sudo \
 		inetutils-ping inetutils-traceroute dnsutils \
-		curl wget jq
+		curl wget jq groff less dialog
 
 ARG HGID
 ARG HUID
