@@ -34,7 +34,7 @@ sudoを使えばパスワードなしでubuntuユーザからrootになれます
 
 tmux起動
 
-	docker-compose exec -u ubuntu work tmux
+	docker-compose exec -u ubuntu work sh -c 'cd && exec tmux'
 
 終了
 
