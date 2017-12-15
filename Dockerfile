@@ -9,7 +9,9 @@ RUN set -xe && \
 RUN set -xe && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
-		gosu sudo git vim openssh-server git awscli tmux sudo
+		gosu sudo git vim openssh-server git awscli tmux sudo \
+		inetutils-ping inetutils-traceroute dnsutils \
+		curl wget jq
 
 ARG HGID
 ARG HUID

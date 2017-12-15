@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  root:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args: [ 'HGID=${HGID}','HUID=${HUID}' ]
+    image: mamemomonga/awscli-env
+
+    volumes:
+       - './ubuntu:/home/ubuntu'
+
+    hostname: awscli-env
+    working_dir: /root
+    command: bash
+
+  ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args: [ 'HGID=${HGID}','HUID=${HUID}' ]
+    image: mamemomonga/awscli-env
+
+    volumes:
+       - './ubuntu:/home/ubuntu'
+
+    hostname: awscli-env
+    working_dir: /home/ubuntu
+    user: ubuntu
+    command: bash
+
